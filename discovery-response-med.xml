@@ -1,0 +1,8 @@
+<taxii_11:Discovery_Response xmlns:taxii="http://taxii.mitre.org/messages/taxii_xml_binding-1" xmlns:taxii_11="http://taxii.mitre.org/messages/taxii_xml_binding-1.1" xmlns:tdq="http://taxii.mitre.org/query/taxii_default_query-1" message_id="eb6c26af-1313-41f0-8535-0635bbe83ada" in_response_to="1">
+  <taxii_11:Service_Instance service_type="DISCOVERY" service_version="urn:taxii.mitre.org:services:1.1" available="true">
+  </taxii_11:Service_Instance>
+  <taxii_11:Service_Instance service_type="INBOX" service_version="urn:taxii.mitre.org:services:1.1" available="true">
+  </taxii_11:Service_Instance>
+  <taxii_11:Service_Instance service_type="POLL" service_version="urn:taxii.mitre.org:services:1.1" available="true">
+  </taxii_11:Service_Instance>
+</taxii_11:Discovery_Response>

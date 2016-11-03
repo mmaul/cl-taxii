@@ -3,7 +3,7 @@
 (defpackage #:<taxii_11
   (:use #:cl)
   (:use #:xmlisp)
-  (:export :discovery_response :protocol_binding :LOAD-OBJECT-FROM-STREAM )
+  (:export :discovery_response :protocol_binding :LOAD-OBJECT-FROM-STREAM :LOAD-OBJECT-FROM-STREAM)
   (:nicknames :xmlns :taxii_11)
   )
 
@@ -28,6 +28,24 @@
                            next))
           (setf next (read stream nil :eof))
           (when (eq next :eof) (return output)))))
+    ))
+(defun LOAD-OBJECT-FROM-STRING (str &key Verbose (Package *Package*)) "
+  in: str
+    &key Verbose boolean;
+         package package default *Package*.
+ out: Object t.
+ Load XML object contained in <Filename> into package and return it."
+  (when Verbose (format t ";; loading object in file: ~A~%" Filename))
+  (let ((*Package* Package))
+    (let ((next nil)
+            (output nil))
+        (loop
+          (setf output (if (typep next (find-class 'sgml-tag))
+                           output
+                           next))
+          (setf next (read-from-string str))
+           (when (eq next :eof) (return output))))
+    
     ))
 
 (defclass Response (xml-serializer)
