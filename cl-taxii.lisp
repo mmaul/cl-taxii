@@ -19,22 +19,43 @@
    (tdq :accessor tdq :initform "" :initarg :tdq :attribute ("xmlns:tdq"))
    (service-instances :accessor service-instances :initform nil :initarg :service-instances
                       :subelement (:element-type service-instance  :multiple t)))
+  
   (:metaclass element-class)
   (:tags ("Discovery_Response" :primary t))
   (:allowed-elements service-instance)
   (:documentation "Discover_Response element in TAXII 1.1"))
 
+(defclass simple-text-element () () (:metaclass element-class))
+
 (defclass service-instance ()
   ((service_type :accessor service_type :initform nil :initarg :service_type :attribute ("service_type"))
    (service_version :accessor service_version :initform nil :initarg :service_version :attribute ("service_version"))
-   (available :accessor available :initform nil :initarg :available :attribute ("available")))
+   (available :accessor available :initform nil :initarg :available :attribute ("available"))
+   (protocol-binding :accessor protocol-binding :initform "" 
+                     :subelement (simple-text-element :alias "Protocol_Binding")
+                     )
+   (address :subelement (simple-text-element :alias "Address") :accessor address :initform "")
+   (message-binding :subelement (simple-text-element :alias "Message_Binding") :accessor message-binding :initform "")
+   (content-bindings :subelement (:element-type content-binding :multiple t) :accessor content-bindings :initform nil :initarg :content-bindings)
+   )
+
   (:metaclass element-class)
   (:tags ("Service_Instance"))
   (:documentation "Service_Instance element in TAXII 1.1"))
 
-  (defun test-xml-discovery ()
-    (with-open-file (stream "/home/mmaul/quicklisp/local-projects/cl-taxii/discovery-response-med.xml")
-      (parse-xml-stream stream (list (find-class 'discovery-response)))))
+(defclass protocol-binding ()
+  ()
+  (:tags ("Protocol_Binding" :primary t))
+  (:metaclass element-class))
+
+(defclass content-binding ()
+  ((binding_id :accessor binding_id :initform nil :initarg :binding_id :attribute ("binding_id")))
+  (:tags ("Content_Binding" ))
+  (:metaclass element-class))
+
+(defun test-xml-discovery ()
+  (with-open-file (stream "/home/mmaul/quicklisp/local-projects/cl-taxii/discovery-response-2.xml")
+    (parse-xml-stream stream (list (find-class 'discovery-response)))))
 
 ;;; "cl-taxii" goes here. Hacks and glory await!
 
