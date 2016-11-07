@@ -246,4 +246,4 @@ xmlns:taxii_11=\"http://taxii.mitre.org/messages/taxii_xml_binding-1.1\" message
   (<taxii-feed> "Hailataxii" "http://hailataxii.com/taxii-discovery-service"))
 
 ( manardb:use-mmap-dir  "/tmp/" )
-(defparameter haila (<taxii-feed> "Hailataxii" "http://hailataxii.com/taxii-discovery-service"))
+;(defparameter haila (<taxii-feed> "Hailataxii" "http://hailataxii.com/taxii-discovery-service"))
