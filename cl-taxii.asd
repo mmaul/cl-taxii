@@ -7,7 +7,7 @@
   :license "BSD"
   :serial t
   ;:depends-on ( :cxml :cxml-stp :drakma :flexi-streams :manardb)
-  :depends-on ( :drakma :flexi-streams :xml-mop :manardb :cxml)
+  :depends-on ( :drakma :flexi-streams :xml-mop :manardb :cxml :cl-fad)
   :components ( ;(:file "package")
                (:file "builder")
                (:file "cl-taxii")))
